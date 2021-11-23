@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotiza</title>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <link rel="Icon" href="img/icono.jfif">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<!--Crear un proyecto web utilizando HTML, CSS y JS que satisfaga los siguientes requerimientos para simulación de una inversión
+en un banco cualquiera, en donde cada persona puede invertir dinero, para luego recibir lo que invirtió más los interes que le ofrece
+un banco como garantía transcurrido un tiempo definido, para ello, se solicita lo siguiente:
+
+* El usuario puede seleccionar invertir en Ahorro a Plazo Fijo (Se ahorra por un tiempo determinado para luego retirar el dinero más las ganancias)
+o a Plazo Renovable(Se ahorra por un tiempo determinado para luego retirar el dinero más las ganancias con la opción de realizar nuevamente el 
+ahorro.
+
+* Si el usuario selecciona Ahorro a plazo fijo, puede ahorrar en PESOS o UF, si es renovable solo puede ahorrar en PESOS.
+
+* Si ahorra en Pesos o en UF, existen montos y plazos mínimos de ahorro, los cuales son los siguientes:
+	
+	- Para Peso, el tiempo de inversión es de 7 a 90 días y el monto mínimo a invertir es de $10.000, sin tope.
+	- Para UF, el tiempo de inversion debe ser mayor o igual a 120 días hasta 365 días, con un mínimo de 500 UF, sin tope.
+
+SE SOLICITA:
+
+* Implementar una función en JS que muestres y esconda opciones de PESO o UF seún tipo de inversión.
+* Implementar una función en JS que permita validar plazos y montos de inversión mínimo según el tipo de inversión.
+* Implementar una función en JS que permita validar los campos obligatoriso del formulario (todos obligactorios).
+* Implementar una función en JS que realice el cálculo, y luego muestre a traves de un ALERT, el tipo de inversión seleccionada, montos, plazos
+e intereses a ganar, considere la formula para calcular la ganancia como ganancia=plazo*monto*0,0047.
+* Implementar una hoja de estilos visual CSS a la aplicación.-->
+
+<body class="hidden">
+    <div class="onload" id="onload">
+    <div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <div class="container">
+        <h2>Realiza tu ahorro a plazo</h2>
+        <p>Llena todos los campos de este formulario.</p>
+        <form class="form-group-sm" name="frm" action="index.html" method="GET">
+            <!--Ingreso de nombre y apellidos-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control" id="name" placeholder="Nombre y Apellido" value="" aria-label="First name" required autofocus="">
+            </div>&nbsp;
+            <!--Ingreso de RUT-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control" id="rut" name="rut" value="" placeholder="Escribe tu R.U.T" required maxlength="9">
+            </div>&nbsp;
+            <!--Ingreso de Teléfono-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                <input type="tel" class="form-control" name="tel" value="" id="tel" placeholder="Fono de contacto" required>
+            </div>&nbsp;
+            <!--Email-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input id="email" type="email" class="form-control" name="email" value="" placeholder="Correo electrónico" required>
+            </div>&nbsp;
+            <div class="input-group">
+                <p>¿Que tipo de ahorro necesitas?
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="tipoAhorro" value="Fijo" id="pfijo"> Plazo Fijo
+                    </label>
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="tipoAhorro" value="Renovable" id="renovable"> Renovable
+                    </label>
+                    <p id="infoRenovable">¡¡Importante!! si seleccionas ahorro renovable solo puede ser en pesos.</p>
+                </p>
+            </div>
+            <!--Tipo de valor-->
+            <div class="input-group">
+                <p>¿Que tipo de ahorro necesitas?
+                    <label class="form-check-label" id="pesos">
+                    <input type="radio" class="form-check-input" name="valorAhorro" value="pesos"> Pesos
+                    </label>
+                    <label class="form-check-label" id="uf">
+                    <input type="radio" class="form-check-input" name="valorAhorro" value="uf" id="uf"> U.F
+                    </label>
+                </p>
+            </div>
+            <div class="input-group-sm">
+                <label for="cot" class="cot">Plazos y montos</label>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="monto" class="form-label">Monto Ahorro </label>
+                        <input type="number" id="monto" value="" class="form-inline" placeholder="Monto" aria-label="monto" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="plazo" class="form-label">Plazo Ahorro (días)</label>
+                        <input type="number" id="plazo" value="" class="form-inline" placeholder="Plazo" aria-label="plazo" required>
+                    </div>
+                </div>    
+            </div>&nbsp;
+                <script type="text/javascript" src="funciones.js"></script>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-sm" onclick="enviar()">Enviar</button>
+                <button type="reset" class="btn btn-danger btn-sm">Borrar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
