@@ -114,7 +114,7 @@ body{
 #infoRenovable{
   display: none;
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  background:red;
+  background: #F90716;
   border: black solid 2px;
   border-radius: 5px;
   padding: 5px;
